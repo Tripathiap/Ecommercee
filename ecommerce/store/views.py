@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import JsonResponse
 import json
 import datetime
 from .models import *
 from .utils import cookieCart, cartData, guestOrder
+from django.conf import settings
 
 def store(request):
     data = cartData(request)
@@ -89,3 +90,7 @@ def processOrder(request):
 
     return JsonResponse('Payment completed', safe=False)
 
+
+def loginview(request):
+    context={}
+    return render(request, 'store/login.html',context)
